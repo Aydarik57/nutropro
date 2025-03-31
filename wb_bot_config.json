@@ -1,0 +1,17 @@
+{
+  "allowed_users": [
+    "@zariipov57",
+    "@stas_pw",
+    "@khabibulliin",
+    "@dk_smile"
+  ],
+  "wildberries_api_token": "eyJhbGciOiJFUzI1NiIsImtpZCI6IjIwMjUwMjE3djEiLCJ0eXAiOiJKV1QifQ.eyJlbnQiOjEsImV4cCI6MTc1OTE4NDg2MiwiaWQiOiIwMTk1ZWJiZS0yNjk5LTdkNDYtODFkZC05MDMxMWIwZTFhYTQiLCJpaWQiOjIwMTY1NTgzOSwib2lkIjo3ODgwMzEsInMiOjc5MzQsInNpZCI6ImFjZjZkODg4LTkzNDQtNDEyZC05NGZjLTEzNjI0N2ZhYjc0OCIsInQiOmZhbHNlLCJ1aWQiOjIwMTY1NTgzOX0.WDHt_lUJIg6laUmb07eM1UJzKGpAi-CmEZhupjZhbSyAD8ZFECMZXJAHsdLjAE9huN1HiLX4XImyz6iVjK4Wmg",
+  "report_time": "09:00",
+  "features": {
+    "notify_new_orders": true,
+    "notify_questions": true,
+    "notify_reviews": true,
+    "notify_returns": true,
+    "daily_report": true
+  }
+}
