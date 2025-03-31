@@ -51,7 +51,7 @@ def check_wb():
             if r_id != last_review_id:
                 last_review_id = r_id
                 msg = (
-                    f"📝 Новый отзыв:
+                    "📝 Новый отзыв:
 
 "
                     f"{r.get('text')}
@@ -74,7 +74,7 @@ def check_wb():
             if q_id != last_question_id:
                 last_question_id = q_id
                 msg = (
-                    f"❓ Новый вопрос:
+                    "❓ Новый вопрос:
 
 "
                     f"{q.get('text')}
