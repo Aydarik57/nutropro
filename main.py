@@ -3,7 +3,7 @@ import time
 import requests
 import logging
 from telegram import Bot
-from telegram.ext import Updater, CommandHandler, CallbackContext, MessageHandler, Filters
+from telegram.ext import Updater, CommandHandler, CallbackContext
 
 # --- Конфигурация ---
 TG_BOT_TOKEN = os.getenv("TG_BOT_TOKEN")
@@ -16,7 +16,6 @@ ALLOWED_USERS = [
     1142902789    # @khabibulliin
 ]
 
-# Сохраняем последние ID, чтобы не присылать повторно
 last_review_id = None
 last_question_id = None
 
@@ -30,11 +29,9 @@ def is_authorized(user_id: int) -> bool:
 def start(update, context: CallbackContext):
     user_id = update.effective_user.id
     if not is_authorized(user_id):
-        context.bot.send_message(chat_id=update.effective_chat.id,
-                                 text="❌ Доступ запрещён.")
+        context.bot.send_message(chat_id=update.effective_chat.id, text="❌ Доступ запрещён.")
         return
-    context.bot.send_message(chat_id=update.effective_chat.id,
-                             text="🤖 WB-бот активен. Ожидайте уведомлений!")
+    context.bot.send_message(chat_id=update.effective_chat.id, text="🤖 Бот активен. Ожидайте уведомлений!")
 
 start_handler = CommandHandler('start', start)
 dispatcher.add_handler(start_handler)
@@ -53,11 +50,15 @@ def check_wb():
             r_id = r.get("id")
             if r_id != last_review_id:
                 last_review_id = r_id
-                msg = f"📝 Новый отзыв:
+                msg = (
+                    f"📝 Новый отзыв:
 
-{r.get('text')}
+"
+                    f"{r.get('text')}
 
-Товар: {r.get('productDetails', {}).get('supplierArticle', '')}"
+"
+                    f"Товар: {r.get('productDetails', {}).get('supplierArticle', '')}"
+                )
                 for uid in ALLOWED_USERS:
                     bot.send_message(chat_id=uid, text=msg)
     except Exception as e:
@@ -72,11 +73,15 @@ def check_wb():
             q_id = q.get("id")
             if q_id != last_question_id:
                 last_question_id = q_id
-                msg = f"❓ Новый вопрос:
+                msg = (
+                    f"❓ Новый вопрос:
 
-{q.get('text')}
+"
+                    f"{q.get('text')}
 
-Товар: {q.get('productDetails', {}).get('supplierArticle', '')}"
+"
+                    f"Товар: {q.get('productDetails', {}).get('supplierArticle', '')}"
+                )
                 for uid in ALLOWED_USERS:
                     bot.send_message(chat_id=uid, text=msg)
     except Exception as e:
